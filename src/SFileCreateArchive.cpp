@@ -97,10 +97,6 @@ bool WINAPI SFileCreateArchive(const TCHAR * szMpqName, DWORD dwCreateFlags, DWO
     if((CreateInfo.dwMpqVersion >= MPQ_FORMAT_VERSION_3) && (dwCreateFlags & MPQ_CREATE_ATTRIBUTES))
         CreateInfo.dwAttrFlags |= MPQ_ATTRIBUTE_PATCH_BIT;
 
-    // Backward compatibility: SFileCreateArchive always used to add (listfile)
-    // We would break loads of applications if we change that
-    CreateInfo.dwFileFlags1 = MPQ_FILE_DEFAULT_INTERNAL;
-
     // Let the main function create the archive
     return SFileCreateArchive2(szMpqName, &CreateInfo, phMpq);
 }
